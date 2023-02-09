@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //getting the elements and assigning them to variables
         pic = findViewById(R.id.IVPic);
         select = findViewById(R.id.btnLoadImg);
         text = findViewById(R.id.tvGuess);
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //this method handles grabbing the image and converting it into a bitmap
+    //this method handles grabbing the image and converting it into a bitmap, also displays the string
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -59,20 +60,19 @@ public class MainActivity extends AppCompatActivity {
             try {
                 InputStream inputStream = getContentResolver().openInputStream(data.getData());
                 Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                pic.setImageBitmap(bitmap);
-                text.setText(pickString());
+                pic.setImageBitmap(bitmap); //sets the image view to be the bitmap created from the user's image
+                text.setText(pickString()); //picks and sets the text to be the randoms string
 
             } catch (FileNotFoundException e) {
+                System.out.println("Here!\n"); //debugging
                 e.printStackTrace();
             }
         }
 
     }
 
-    public void loadImg(){
 
-    }
-
+    //helper method for picking a random string
     private String pickString(){
         String[] stgArray = {"Horse", "Bird", "T-Shirt",
                 "What", "Indescribable", "That's not anything",
