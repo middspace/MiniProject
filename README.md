@@ -1,4 +1,5 @@
-# MiniProject
+# MiniProject - Jacob Schnitker
+
 
 You can run this code in 2 ways:
 
